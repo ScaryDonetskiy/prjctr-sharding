@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  postgres_main:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: default
+    volumes:
+      - postgres_main-data:/var/lib/postgresql/data
+
+  postgres_shard_1:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: default
+    volumes:
+      - postgres_shard_1-data:/var/lib/postgresql/data
+
+  postgres_shard_2:
+    image: postgres:latest
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: default
+    volumes:
+      - postgres_shard_2-data:/var/lib/postgresql/data
+
+  postgres_shard_3:
+    image: postgres:latest
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_PASSWORD: default
+    volumes:
+      - postgres_shard_3-data:/var/lib/postgresql/data
+
+volumes:
+  postgres_main-data:
+  postgres_shard_1-data:
+  postgres_shard_2-data:
+  postgres_shard_3-data:
